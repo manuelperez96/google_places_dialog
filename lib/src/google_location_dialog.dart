@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_location_dialog/google_location_dialog.dart';
-import 'package:google_location_dialog/src/model/address.dart';
+import 'package:google_location_dialog/src/model/google_address.dart';
 
 /// Callback called when user press an Address.
 /// It receive the selected address.
-typedef OnSelectAddress = FutureOr<void> Function(Address address);
+typedef OnSelectAddress = FutureOr<void> Function(GoogleAddress address);
 
 /// Callback called when user press keyboard main button or search icon
 /// in [_SearchBar]. Used to search address
@@ -46,7 +46,7 @@ class GoogleLocationDialog extends StatefulWidget {
 
 class _GoogleLocationDialog extends State<GoogleLocationDialog> {
   late final TextEditingController _controller;
-  final _addresses = <Address>[];
+  final _addresses = <GoogleAddress>[];
   var _isloading = false;
   var _hasError = false;
 
@@ -221,12 +221,12 @@ class _SearchBar extends StatelessWidget {
 
 class _PlacesList extends StatelessWidget {
   const _PlacesList({
-    required List<Address> addresses,
+    required List<GoogleAddress> addresses,
     required OnSelectAddress onSelectedAddress,
   })  : _addresses = addresses,
         _onSelectAddress = onSelectedAddress;
 
-  final List<Address> _addresses;
+  final List<GoogleAddress> _addresses;
   final OnSelectAddress _onSelectAddress;
 
   @override

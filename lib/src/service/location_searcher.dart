@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:google_location_dialog/google_location_dialog.dart';
-import 'package:google_location_dialog/src/model/address.dart';
+import 'package:google_location_dialog/src/model/google_address.dart';
 import 'package:http/http.dart' as http;
 
 class SearchAutocompleteException implements Exception {}
@@ -28,7 +28,7 @@ class AddressSearcherClient {
   static const _autocompleteEndPoint = '/maps/api/place/autocomplete/json';
   static const _detailEndPoint = '/maps/api/place/details/json';
 
-  Future<List<Address>> searchAddressByQuery(String query) async {
+  Future<List<GoogleAddress>> searchAddressByQuery(String query) async {
     if (query.trim().isEmpty) return List.empty();
     final client = http.Client();
     try {
@@ -41,7 +41,7 @@ class AddressSearcherClient {
     }
   }
 
-  Future<List<TinyAddress>> _searchAutocompletePlaces(
+  Future<List<GoogleSingleAddress>> _searchAutocompletePlaces(
     http.Client client,
     String query,
   ) async {
@@ -57,7 +57,7 @@ class AddressSearcherClient {
 
       return castedPredictions.map(
         (e) {
-          return TinyAddress(
+          return GoogleSingleAddress(
             reference: e['place_id'] as String,
             name: e['description'] as String,
           );
@@ -84,9 +84,9 @@ class AddressSearcherClient {
     };
   }
 
-  Future<List<Address>> _getPlacesGeometry(
+  Future<List<GoogleAddress>> _getPlacesGeometry(
     http.Client client,
-    List<TinyAddress> places,
+    List<GoogleSingleAddress> places,
   ) async {
     try {
       final futureAddresses = places.map(
@@ -98,9 +98,9 @@ class AddressSearcherClient {
     }
   }
 
-  Future<Address> _getPlaceGeometry(
+  Future<GoogleAddress> _getPlaceGeometry(
     http.Client client,
-    TinyAddress place,
+    GoogleSingleAddress place,
   ) async {
     final uri = _buildDetailQuery(place);
 
@@ -110,7 +110,7 @@ class AddressSearcherClient {
     final location = geometry['location'] as Map;
     final lat = double.parse(location['lat'].toString());
     final lng = double.parse(location['lng'].toString());
-    return Address(
+    return GoogleAddress(
       name: place.name,
       reference: place.reference,
       lat: lat,
@@ -119,7 +119,7 @@ class AddressSearcherClient {
     );
   }
 
-  Uri _buildDetailQuery(TinyAddress place) {
+  Uri _buildDetailQuery(GoogleSingleAddress place) {
     return Uri.https(
       _authority,
       _detailEndPoint,

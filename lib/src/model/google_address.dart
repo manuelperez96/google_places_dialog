@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 
 @immutable
-class TinyAddress {
-  const TinyAddress({
+class GoogleSingleAddress {
+  const GoogleSingleAddress({
     required this.reference,
     required this.name,
   });
@@ -12,7 +12,7 @@ class TinyAddress {
 
   @override
   bool operator ==(Object other) =>
-      other is TinyAddress &&
+      other is GoogleSingleAddress &&
       other.runtimeType == runtimeType &&
       other.reference == reference &&
       other.name == name;
@@ -21,8 +21,8 @@ class TinyAddress {
   int get hashCode => reference.hashCode + name.hashCode;
 }
 
-class Address extends TinyAddress {
-  const Address({
+class GoogleAddress extends GoogleSingleAddress {
+  const GoogleAddress({
     required super.reference,
     required super.name,
     required this.lat,
@@ -36,7 +36,7 @@ class Address extends TinyAddress {
 
   @override
   bool operator ==(Object other) =>
-      other is Address &&
+      other is GoogleAddress &&
       other.runtimeType == runtimeType &&
       other.reference == reference &&
       other.name == name &&
