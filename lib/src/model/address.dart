@@ -41,14 +41,20 @@ class Address extends TinyAddress {
       other.reference == reference &&
       other.name == name &&
       other.lat == lat &&
-      other.lng == lng;
+      other.lng == lng &&
+      other.geohash == geohash;
 
   @override
   int get hashCode =>
-      reference.hashCode + name.hashCode + lat.hashCode + lng.hashCode;
+      reference.hashCode +
+      name.hashCode +
+      lat.hashCode +
+      lng.hashCode +
+      geohash.hashCode;
 
   @override
   String toString() {
-    return 'reference: $reference\nName: $name\nlat: $lat\nlng: $lng\n';
+    return 'reference: $reference\nName: $name\nlat: $lat\n'
+        'lng: $lng\ngeohash: $geohash';
   }
 }

@@ -115,7 +115,7 @@ class AddressSearcherClient {
       reference: place.reference,
       lat: lat,
       lng: lng,
-      geohash: GeoHash.fromDecimalDegrees(lat, lng),
+      geohash: GeoHash.fromDecimalDegrees(latitude: lat, longitude: lng),
     );
   }
 

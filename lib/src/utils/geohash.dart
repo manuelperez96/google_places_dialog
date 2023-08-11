@@ -187,9 +187,9 @@ class GeoHasher {
 /// A containing class for a geohash
 abstract class GeoHash {
   /// Constructor given Longitude and Latitude
-  static String fromDecimalDegrees(
-    double longitude,
-    double latitude, {
+  static String fromDecimalDegrees({
+    required double longitude,
+    required double latitude,
     int precision = 9,
   }) {
     return GeoHasher().encode(longitude, latitude, precision: precision);
