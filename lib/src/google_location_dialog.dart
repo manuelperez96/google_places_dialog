@@ -75,9 +75,10 @@ class _GoogleLocationDialog extends State<GoogleLocationDialog> {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   _SearchBar(
-                      controller: _controller,
-                      onSearchAddress: () => _searchLocation(innerSetState),
-                      searchHint: widget._dialogTexts.searchHint),
+                    controller: _controller,
+                    onSearchAddress: () => _searchLocation(innerSetState),
+                    searchHint: widget._dialogTexts.searchHint,
+                  ),
                   if (_isloading)
                     const Expanded(
                       child: Center(
@@ -103,7 +104,9 @@ class _GoogleLocationDialog extends State<GoogleLocationDialog> {
                         label: widget._dialogTexts.onEmpty,
                       ),
                     ),
-                  const _ButtonBar(),
+                  _ButtonBar(
+                    closeLabel: widget._dialogTexts.close,
+                  ),
                 ],
               ),
             );
@@ -260,7 +263,11 @@ class _PlacesList extends StatelessWidget {
 }
 
 class _ButtonBar extends StatelessWidget {
-  const _ButtonBar();
+  const _ButtonBar({
+    required String closeLabel,
+  }) : _closeLabel = closeLabel;
+
+  final String _closeLabel;
 
   @override
   Widget build(BuildContext context) {
@@ -286,7 +293,7 @@ class _ButtonBar extends StatelessWidget {
                   ),
                 ),
                 onPressed: () => Navigator.pop(context),
-                child: const Text('Cerrar'),
+                child: Text(_closeLabel),
               ),
             ),
           ],
