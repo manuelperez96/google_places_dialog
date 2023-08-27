@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_location_dialog/google_location_dialog.dart';
-import 'package:google_location_dialog/src/model/google_address.dart';
 
 /// Callback called when user press an Address.
 /// It receive the selected address.
@@ -76,9 +75,9 @@ class _GoogleLocationDialog extends State<GoogleLocationDialog> {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   _SearchBar(
-                    controller: _controller,
-                    onSearchAddress: () => _searchLocation(innerSetState),
-                  ),
+                      controller: _controller,
+                      onSearchAddress: () => _searchLocation(innerSetState),
+                      searchHint: widget._dialogTexts.searchHint),
                   if (_isloading)
                     const Expanded(
                       child: Center(
@@ -173,11 +172,14 @@ class _SearchBar extends StatelessWidget {
   const _SearchBar({
     required TextEditingController controller,
     required OnSearchAddress onSearchAddress,
+    required String searchHint,
   })  : _onSearchAddress = onSearchAddress,
-        _controller = controller;
+        _controller = controller,
+        _searchHint = searchHint;
 
   final TextEditingController _controller;
   final OnSearchAddress _onSearchAddress;
+  final String _searchHint;
 
   @override
   Widget build(BuildContext context) {
@@ -193,6 +195,7 @@ class _SearchBar extends StatelessWidget {
                   autofocus: true,
                   onEditingComplete: _onSearchAddress,
                   decoration: InputDecoration(
+                    hintText: _searchHint,
                     border: const OutlineInputBorder(
                       borderSide: BorderSide.none,
                       borderRadius: BorderRadius.vertical(
