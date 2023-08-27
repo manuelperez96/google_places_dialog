@@ -199,6 +199,7 @@ class _SearchBar extends StatelessWidget {
                   onEditingComplete: _onSearchAddress,
                   decoration: InputDecoration(
                     hintText: _searchHint,
+                    contentPadding: const EdgeInsets.fromLTRB(12, 24, 12, 16),
                     border: const OutlineInputBorder(
                       borderSide: BorderSide.none,
                       borderRadius: BorderRadius.vertical(
