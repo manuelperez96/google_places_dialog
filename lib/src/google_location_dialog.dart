@@ -280,7 +280,10 @@ class _ButtonBar extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   maximumSize: const Size(double.infinity, 36),
                   minimumSize: const Size(0, 36),
-                  textStyle: const TextStyle(fontSize: 12),
+                  textStyle: TextStyle(
+                    fontSize: 12,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
                 ),
                 onPressed: () => Navigator.pop(context),
                 child: const Text('Cerrar'),
