@@ -286,6 +286,7 @@ class _ButtonBar extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: TextButton(
                 style: TextButton.styleFrom(
+                  tapTargetSize: MaterialTapTargetSize.padded,
                   maximumSize: const Size(double.infinity, 36),
                   minimumSize: const Size(0, 36),
                   foregroundColor: Theme.of(context).colorScheme.primary,
