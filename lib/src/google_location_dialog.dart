@@ -284,12 +284,12 @@ class _ButtonBar extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: TextButton(
-                style: ElevatedButton.styleFrom(
+                style: TextButton.styleFrom(
                   maximumSize: const Size(double.infinity, 36),
                   minimumSize: const Size(0, 36),
-                  textStyle: TextStyle(
+                  foregroundColor: Theme.of(context).colorScheme.primary,
+                  textStyle: const TextStyle(
                     fontSize: 12,
-                    color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
                 onPressed: () => Navigator.pop(context),
