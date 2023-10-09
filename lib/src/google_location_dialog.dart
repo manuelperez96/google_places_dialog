@@ -299,7 +299,7 @@ class _ButtonBar extends StatelessWidget {
               ),
             ),
           ],
-        )
+        ),
       ],
     );
   }
