@@ -125,8 +125,7 @@ class _GoogleLocationDialog extends State<GoogleLocationDialog> {
     });
 
     try {
-      final addresses =
-          await widget._addressSearcherClient.searchAddressByQuery(
+      final addresses = await widget._addressSearcherClient.searchAddressByQuery(
         _controller.text,
       );
       innerSetState(() => _isloading = false);
@@ -197,6 +196,7 @@ class _SearchBar extends StatelessWidget {
                   controller: _controller,
                   autofocus: true,
                   onEditingComplete: _onSearchAddress,
+                  textInputAction: TextInputAction.search,
                   decoration: InputDecoration(
                     hintText: _searchHint,
                     contentPadding: const EdgeInsets.fromLTRB(12, 24, 12, 16),
