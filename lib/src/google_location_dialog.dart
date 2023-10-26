@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_debouncer/flutter_debouncer.dart';
 import 'package:google_location_dialog/google_location_dialog.dart';
 
 /// Callback called when user press an Address.
@@ -125,8 +126,7 @@ class _GoogleLocationDialog extends State<GoogleLocationDialog> {
     });
 
     try {
-      final addresses =
-          await widget._addressSearcherClient.searchAddressByQuery(
+      final addresses = await widget._addressSearcherClient.searchAddressByQuery(
         _controller.text,
       );
       innerSetState(() => _isloading = false);
@@ -172,7 +172,7 @@ class _StatefullDialog extends StatelessWidget {
 }
 
 class _SearchBar extends StatelessWidget {
-  const _SearchBar({
+  _SearchBar({
     required TextEditingController controller,
     required OnSearchAddress onSearchAddress,
     required String searchHint,
@@ -183,6 +183,8 @@ class _SearchBar extends StatelessWidget {
   final TextEditingController _controller;
   final OnSearchAddress _onSearchAddress;
   final String _searchHint;
+
+  final Debouncer _debouncer = Debouncer();
 
   @override
   Widget build(BuildContext context) {
@@ -197,6 +199,13 @@ class _SearchBar extends StatelessWidget {
                   controller: _controller,
                   autofocus: true,
                   onEditingComplete: _onSearchAddress,
+                  onChanged: (val) {
+                    _debouncer.debounce(
+                      const Duration(milliseconds: 600),
+                      _onSearchAddress,
+                    );
+                  },
+                  textInputAction: TextInputAction.search,
                   decoration: InputDecoration(
                     hintText: _searchHint,
                     contentPadding: const EdgeInsets.fromLTRB(12, 24, 12, 16),
