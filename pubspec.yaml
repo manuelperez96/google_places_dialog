@@ -1,11 +1,12 @@
 name: google_places_dialog
-description: A Very Good Project created by Very Good CLI.
-version: 0.2.0+2
-publish_to: none
+description: A package to show a dialog with google places autocomplete.
+version: 0.2.0
+homepage: https://github.com/manuelperez96/google_places_dialog
+repository: https://github.com/manuelperez96/google_places_dialog
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
-  flutter: 3.10.0
+  flutter: ">=1.17.0"
 
 dependencies:
   flutter:
