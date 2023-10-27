@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_debouncer/flutter_debouncer.dart';
-import 'package:google_location_dialog/google_location_dialog.dart';
+import 'package:google_places_dialog/google_places_dialog.dart';
 
 /// Callback called when user press an Address.
 /// It receive the selected address.
@@ -26,8 +26,8 @@ class DialogTexts {
   final String onError;
 }
 
-class GoogleLocationDialog extends StatefulWidget {
-  const GoogleLocationDialog({
+class GooglePlacesDialog extends StatefulWidget {
+  const GooglePlacesDialog({
     required AddressSearcherClient addressSearcherClient,
     required OnSelectAddress onSelectedAddress,
     required DialogTexts dialogTexts,
@@ -41,10 +41,10 @@ class GoogleLocationDialog extends StatefulWidget {
   final DialogTexts _dialogTexts;
 
   @override
-  State<GoogleLocationDialog> createState() => _GoogleLocationDialog();
+  State<GooglePlacesDialog> createState() => _GooglePlacesDialog();
 }
 
-class _GoogleLocationDialog extends State<GoogleLocationDialog> {
+class _GooglePlacesDialog extends State<GooglePlacesDialog> {
   late final TextEditingController _controller;
   final _addresses = <GoogleAddress>[];
   var _isloading = false;
@@ -126,7 +126,8 @@ class _GoogleLocationDialog extends State<GoogleLocationDialog> {
     });
 
     try {
-      final addresses = await widget._addressSearcherClient.searchAddressByQuery(
+      final addresses =
+          await widget._addressSearcherClient.searchAddressByQuery(
         _controller.text,
       );
       innerSetState(() => _isloading = false);
