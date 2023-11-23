@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:google_location_dialog/google_location_dialog.dart';
+import 'package:google_places_dialog/google_places_dialog.dart';
 import 'package:http/http.dart' as http;
 
 class SearchAutocompleteException implements Exception {}

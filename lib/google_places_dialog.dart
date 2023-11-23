@@ -1,5 +1,5 @@
 /// A Very Good Project created by Very Good CLI.
-library google_location_dialog;
+library google_places_dialog;
 
 export 'src/google_location_dialog.dart';
 export 'src/model/google_address.dart';
