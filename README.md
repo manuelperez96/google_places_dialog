@@ -57,6 +57,9 @@ genhtml coverage/lcov.info -o coverage/
 open coverage/index.html
 ```
 
+## Contributors
+[Shamsudeen12](https://github.com/Shamsudeen12/google_places_dialog/tree/main)
+
 [flutter_install_link]: https://docs.flutter.dev/get-started/install
 [github_actions_link]: https://docs.github.com/en/actions/learn-github-actions
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg

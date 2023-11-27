@@ -1,6 +1,6 @@
 name: google_places_dialog
 description: A package to show a dialog with google places autocomplete.
-version: 0.2.0
+version: 0.2.1
 homepage: https://github.com/manuelperez96/google_places_dialog
 repository: https://github.com/manuelperez96/google_places_dialog
 
