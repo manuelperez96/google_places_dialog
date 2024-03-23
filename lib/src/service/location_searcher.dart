@@ -28,7 +28,6 @@ class AddressSearcherClient {
   static const _detailEndPoint = '/maps/api/place/details/json';
 
   Future<List<GoogleAddress>> searchAddressByQuery(String query) async {
-    print('---');
     if (query.trim().isEmpty) return List.empty();
     final client = http.Client();
     try {
